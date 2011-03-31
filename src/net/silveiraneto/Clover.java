@@ -1,6 +1,9 @@
 package net.silveiraneto;
 
+import java.util.Random;
+
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
@@ -24,6 +27,8 @@ class Clover {
 	Clover b = null;
 	Clover c = null;
 	Clover d = null;
+	
+	int color = Color.WHITE;
 	
 	float x, y, radius, width;
 	
@@ -91,8 +96,15 @@ class Clover {
 	
 
 	public void draw(Canvas canvas, Paint paint){
+		
+		if(color==Color.WHITE){
+			Random r = new Random();
+			color = Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255));
+		}
+		
 		/* 1st quadrant */
 		if(a==null){
+			paint.setColor(color);
 			canvas.drawCircle(x+radius, y+radius, radius, paint);
 		} else {
 			a.draw(canvas, paint);
@@ -100,6 +112,7 @@ class Clover {
 		
 		/* 2nd quadrant */
 		if(b==null){
+			paint.setColor(color);
 			canvas.drawCircle(x+3*radius, y+radius, radius, paint);
 		} else {
 			b.draw(canvas, paint);
@@ -107,6 +120,7 @@ class Clover {
 		
 		/* 3rd quadrant */
 		if(c==null){
+			paint.setColor(color);
 			canvas.drawCircle(x+radius, y+3*radius, radius, paint);
 		} else {
 			c.draw(canvas, paint);
@@ -114,6 +128,7 @@ class Clover {
 		
 		/* 4rd quadrant */
 		if(d==null){
+			paint.setColor(color);
 			canvas.drawCircle(x+3*radius, y+3*radius, radius, paint);
 		} else {
 			d.draw(canvas, paint);
@@ -146,7 +161,7 @@ class Clover {
 			return true;
 		}
 		
-		/* 3rd quadrant */
+		/* 3rd quapaint.setColor(Color.GREEN);drant */
 		centerX = this.x + this.radius;
 		centerY = this.y + 3*this.radius;
 		if ((x-centerX)*(x-centerX) + (y-centerY)*(y-centerY) <= this.radius*this.radius){
