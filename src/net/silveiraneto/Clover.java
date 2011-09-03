@@ -134,13 +134,22 @@ class Clover {
 			d.draw(canvas, paint);
 		}
 	}
-	
-	public boolean split(float x, float y){
 
+	public boolean is_point_in_circle(float pointX, float pointY, float centerX, float centerY, float radius){
+		return ((pointX-centerX)*(pointX-centerX) + (pointY-centerY)*(pointY-centerY) <= radius*radius);
+	}
+	
+/*	public boolean is_point_in_square(float pointX, float pointY, float squareX, float squareY, float width, float height){
+		return false;
+	}
+	
+	public float center(int quadrant) {
+		return 0.0f;
+	}*/
+
+	public boolean split(float x, float y){
 		/* 1st quadrant */
-		float centerX = this.x + this.radius;
-		float centerY = this.y + this.radius;
-		if ((x-centerX)*(x-centerX) + (y-centerY)*(y-centerY) <= this.radius*this.radius){
+		if (is_point_in_circle(x, y, this.x + this.radius, this.y + this.radius, this.radius)){
 			if(this.a==null){
 				this.a = new Clover(this.x, this.y, this.width/2);
 			} else {
@@ -150,9 +159,7 @@ class Clover {
 		}
 		
 		/* 2st quadrant */
-		centerX = this.x + 3*this.radius;
-		centerY = this.y + this.radius;
-		if ((x-centerX)*(x-centerX) + (y-centerY)*(y-centerY) <= this.radius*this.radius){
+		if (is_point_in_circle(x, y, this.x + 3*this.radius, this.y + this.radius, this.radius)){
 			if(this.b==null){
 				this.b = new Clover(this.x + 2*this.radius, this.y, this.width/2);
 			} else {
@@ -161,10 +168,8 @@ class Clover {
 			return true;
 		}
 		
-		/* 3rd quapaint.setColor(Color.GREEN);drant */
-		centerX = this.x + this.radius;
-		centerY = this.y + 3*this.radius;
-		if ((x-centerX)*(x-centerX) + (y-centerY)*(y-centerY) <= this.radius*this.radius){
+		/* 3rd quadrant */
+		if (is_point_in_circle(x, y, this.x + this.radius, this.y + 3*this.radius, this.radius)){
 			if(this.c==null){
 				this.c = new Clover(this.x, this.y+ 2*this.radius, this.width/2);
 			} else {
@@ -174,9 +179,7 @@ class Clover {
 		}
 		
 		/* 4rd quadrant */
-		centerX = this.x + 3*this.radius;
-		centerY = this.y + 3*this.radius;
-		if ((x-centerX)*(x-centerX) + (y-centerY)*(y-centerY) <= this.radius*this.radius){
+		if (is_point_in_circle(x, y,this.x + 3*this.radius, this.y + 3*this.radius, this.radius)){
 			if(this.d==null){
 				this.d = new Clover(this.x+2*this.radius, this.y+ 2*this.radius, this.width/2);
 			} else {
