@@ -139,19 +139,17 @@ class Clover {
 		return ((pointX-centerX)*(pointX-centerX) + (pointY-centerY)*(pointY-centerY) <= radius*radius);
 	}
 	
-/*	public boolean is_point_in_square(float pointX, float pointY, float squareX, float squareY, float width, float height){
-		return false;
+	public boolean is_point_in_square(float pointX, float pointY, float squareX, float squareY, float side){
+		return ((pointX >= squareX) && (pointX <= squareX + side) && (pointY >= squareY) && (pointY <= squareY + side));
 	}
 	
-	public float center(int quadrant) {
-		return 0.0f;
-	}*/
-
 	public boolean split(float x, float y){
 		/* 1st quadrant */
-		if (is_point_in_circle(x, y, this.x + this.radius, this.y + this.radius, this.radius)){
+		if(is_point_in_square(x, y, this.x, this.y, this.radius*2)){
 			if(this.a==null){
-				this.a = new Clover(this.x, this.y, this.width/2);
+				if (is_point_in_circle(x, y, this.x + this.radius, this.y + this.radius, this.radius)){
+					this.a = new Clover(this.x, this.y, this.width/2);
+				}
 			} else {
 				this.a.split(x, y);
 			}
@@ -159,9 +157,11 @@ class Clover {
 		}
 		
 		/* 2st quadrant */
-		if (is_point_in_circle(x, y, this.x + 3*this.radius, this.y + this.radius, this.radius)){
+		if(is_point_in_square(x, y, this.x + this.radius*2, this.y, this.radius*2)){
 			if(this.b==null){
-				this.b = new Clover(this.x + 2*this.radius, this.y, this.width/2);
+				if (is_point_in_circle(x, y, this.x + 3*this.radius, this.y + this.radius, this.radius)){
+					this.b = new Clover(this.x + 2*this.radius, this.y, this.width/2);
+				}
 			} else {
 				this.b.split(x, y);
 			}
@@ -169,9 +169,11 @@ class Clover {
 		}
 		
 		/* 3rd quadrant */
-		if (is_point_in_circle(x, y, this.x + this.radius, this.y + 3*this.radius, this.radius)){
+		if(is_point_in_square(x, y, this.x, this.y + this.radius*2, this.radius*2)){
 			if(this.c==null){
-				this.c = new Clover(this.x, this.y+ 2*this.radius, this.width/2);
+				if (is_point_in_circle(x, y, this.x + this.radius, this.y + 3*this.radius, this.radius)){
+					this.c = new Clover(this.x, this.y+ 2*this.radius, this.width/2);
+				}
 			} else {
 				this.c.split(x, y);
 			}
@@ -179,14 +181,17 @@ class Clover {
 		}
 		
 		/* 4rd quadrant */
-		if (is_point_in_circle(x, y,this.x + 3*this.radius, this.y + 3*this.radius, this.radius)){
+		if(is_point_in_square(x, y, this.x + this.radius*2, this.y + this.radius*2, this.radius*2)){
 			if(this.d==null){
-				this.d = new Clover(this.x+2*this.radius, this.y+ 2*this.radius, this.width/2);
+				if (is_point_in_circle(x, y, this.x + 3*this.radius, this.y + 3*this.radius, this.radius)){
+					this.d = new Clover(this.x+2*this.radius, this.y+ 2*this.radius, this.width/2);
+				}
 			} else {
 				this.d.split(x, y);
 			}
 			return true;
 		}
+		
 		return false;
 	}
 	
