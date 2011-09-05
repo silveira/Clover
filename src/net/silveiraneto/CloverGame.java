@@ -1,9 +1,12 @@
 package net.silveiraneto;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -32,4 +35,29 @@ public class CloverGame extends Activity {
         return true;
     }
     
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.clear_menu_item:
+            cloverView.clear(this);
+            return true;
+        case R.id.about_menu_item:
+            about_dialog();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    public void about_dialog(){
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    	builder.setMessage(":*")
+        .setPositiveButton("*:", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            	dialog.cancel();
+            }
+        });
+    	AlertDialog alert = builder.create();
+    	alert.show();
+    }
 }

@@ -1,5 +1,7 @@
 package net.silveiraneto;
 
+import java.util.Random;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -95,10 +97,10 @@ class Clover {
 
 	public void draw(Canvas canvas, Paint paint){
 		
-		/*if(color==Color.WHITE){
+		if(color==Color.WHITE){
 			Random r = new Random();
-			color = Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255));
-		}*/
+			color = Color.rgb(55+r.nextInt(200), 55+r.nextInt(200), 55+r.nextInt(200));
+		}
 		
 		/* 1st quadrant */
 		if(a==null){
