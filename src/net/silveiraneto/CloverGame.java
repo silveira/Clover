@@ -2,6 +2,8 @@ package net.silveiraneto;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -22,4 +24,12 @@ public class CloverGame extends Activity {
         setContentView(cloverView);
         cloverView.requestFocus();
     }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+    
 }

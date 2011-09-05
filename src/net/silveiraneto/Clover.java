@@ -1,7 +1,5 @@
 package net.silveiraneto;
 
-import java.util.Random;
-
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -97,10 +95,10 @@ class Clover {
 
 	public void draw(Canvas canvas, Paint paint){
 		
-		if(color==Color.WHITE){
+		/*if(color==Color.WHITE){
 			Random r = new Random();
 			color = Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255));
-		}
+		}*/
 		
 		/* 1st quadrant */
 		if(a==null){
@@ -138,11 +136,11 @@ class Clover {
 	public boolean is_point_in_circle(float pointX, float pointY, float centerX, float centerY, float radius){
 		return ((pointX-centerX)*(pointX-centerX) + (pointY-centerY)*(pointY-centerY) <= radius*radius);
 	}
-	
+
 	public boolean is_point_in_square(float pointX, float pointY, float squareX, float squareY, float side){
 		return ((pointX >= squareX) && (pointX <= squareX + side) && (pointY >= squareY) && (pointY <= squareY + side));
 	}
-	
+
 	public boolean split(float x, float y){
 		/* 1st quadrant */
 		if(is_point_in_square(x, y, this.x, this.y, this.radius*2)){

@@ -5,10 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.Display;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 
 /**
  * @author silveira
@@ -17,13 +18,14 @@ import android.view.View.OnTouchListener;
 public class CloverView extends View implements OnTouchListener {	
 	Paint paint = new Paint();
 	Clover tree = new Clover();
+
 	
 	public CloverView(Context context) {
         super(context);
         setFocusable(true);
         setFocusableInTouchMode(true);
         this.setOnTouchListener(this);
-        
+
         
         /* As this.getWidth() would return zero we get the current display properties and assume the 
          * view is occuping the entire screen. */
@@ -42,6 +44,7 @@ public class CloverView extends View implements OnTouchListener {
     	tree.draw(canvas, paint);
     }
 	
+    
     /* 
      * OnTouchListener interface method.
      * If user touched the screen, we try to split the ball and force update the screen if necessary.
@@ -51,7 +54,11 @@ public class CloverView extends View implements OnTouchListener {
          if(event.getAction() == MotionEvent.ACTION_DOWN)
         	 if(this.tree.split(event.getX(), event.getY()))
         		 invalidate();
-        return true;
+        return false;
     }
+    
+    public boolean onCreateOptionsMenu(Menu menu) {
+		return false;
+	}
 }
 

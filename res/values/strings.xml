@@ -2,4 +2,6 @@
 <resources>
     <string name="hello">Hello World, CloverGame!</string>
     <string name="app_name">CloverGame</string>
+    <string name="clear">Clear</string>
+    <string name="about">About</string>
 </resources>
