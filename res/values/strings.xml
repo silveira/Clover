@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, CloverGame!</string>
-    <string name="app_name">CloverGame</string>
+    <string name="app_name">Clover</string>
     <string name="clear">Clear</string>
     <string name="about">About</string>
+    <string name="about_text">Visit us:\nhttp://github.com/silveira/Clover</string>
 </resources>

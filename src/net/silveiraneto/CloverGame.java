@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 public class CloverGame extends Activity {
 	CloverView cloverView;
@@ -26,6 +30,7 @@ public class CloverGame extends Activity {
         cloverView = new CloverView(this);
         setContentView(cloverView);
         cloverView.requestFocus();
+        
     }
     
     @Override
@@ -50,14 +55,20 @@ public class CloverGame extends Activity {
     }
     
     public void about_dialog(){
-    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    	builder.setMessage(":*")
-        .setPositiveButton("*:", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-            	dialog.cancel();
-            }
-        });
-    	AlertDialog alert = builder.create();
-    	alert.show();
+    	  final TextView message = new TextView(this);
+    	  final SpannableString s = 
+    	               new SpannableString(this.getText(R.string.about_text));
+    	  Linkify.addLinks(s, Linkify.WEB_URLS);
+    	  message.setText(s);
+    	  message.setMovementMethod(LinkMovementMethod.getInstance());
+
+    	  AlertDialog about = new AlertDialog.Builder(this)
+    	  	.setTitle(R.string.app_name)
+    	  	.setIcon(android.R.drawable.ic_dialog_info)
+    	  	.setPositiveButton(this.getString(android.R.string.ok), null)
+    	  	.setView(message)
+    	  	.create();
+    	  about.show();
     }
+        
 }
