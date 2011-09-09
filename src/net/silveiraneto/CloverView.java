@@ -56,7 +56,7 @@ public class CloverView extends View implements OnTouchListener {
     	tree = new Clover();
     	
     	 /* As this.getWidth() would return zero we get the current display properties and assume the 
-         * view is occuping the entire screen. */
+         * view is occupying the entire screen. */
         Display dsp =  ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         
         /* Initialize the clover in the middle of screen. */
