@@ -1,5 +1,6 @@
 package net.silveiraneto;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 import android.graphics.Canvas;
@@ -98,7 +99,7 @@ class Clover {
 	public void draw(Canvas canvas, Paint paint){
 		
 		if(color==Color.WHITE){
-			Random r = new Random();
+			Random r = new SecureRandom();
 			color = Color.rgb(55+r.nextInt(200), 55+r.nextInt(200), 55+r.nextInt(200));
 		}
 		
