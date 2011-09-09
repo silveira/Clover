@@ -42,10 +42,10 @@ public class CloverView extends View implements OnTouchListener {
      * @see android.view.View.OnTouchListener#onTouch(android.view.View, android.view.MotionEvent)
      */
     public boolean onTouch(View view, MotionEvent event) {
-         if(event.getAction() == MotionEvent.ACTION_DOWN)
+         if(event.getAction() == MotionEvent.ACTION_UP)
         	 if(this.tree.split(event.getX(), event.getY()))
         		 invalidate();
-        return false;
+        return true;
     }
     
     public boolean onCreateOptionsMenu(Menu menu) {
