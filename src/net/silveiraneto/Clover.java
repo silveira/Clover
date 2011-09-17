@@ -202,6 +202,12 @@ class Clover {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Clover(x:%d, y:%d, width:%d, radius:%d)", this.x, this.y, this.width, this.radius);
+		String str_a, str_b, str_c, str_d;
+		str_a = (a==null)?"":a.toString();
+		str_b = (b==null)?"":b.toString();
+		str_c = (c==null)?"":c.toString();
+		str_d = (d==null)?"":d.toString();
+		
+		return String.format("%d(%s)(%s)(%s)(%s)", this.color, str_a, str_b, str_c, str_d);
 	}
 }
