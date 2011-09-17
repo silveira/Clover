@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -60,6 +62,7 @@ public class CloverGame extends Activity {
     	               new SpannableString(this.getText(R.string.about_text));
     	  Linkify.addLinks(s, Linkify.WEB_URLS);
     	  message.setText(s);
+    	  message.setTextSize(30.0f);
     	  message.setMovementMethod(LinkMovementMethod.getInstance());
 
     	  AlertDialog about = new AlertDialog.Builder(this)
@@ -68,6 +71,7 @@ public class CloverGame extends Activity {
     	  	.setPositiveButton(this.getString(android.R.string.ok), null)
     	  	.setView(message)
     	  	.create();
+    	  
     	  about.show();
     }
         
